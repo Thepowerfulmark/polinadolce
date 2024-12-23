@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Авторизация</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <h1>Авторизация</h1>
+    <div class="auth-container">
+        <label for="username">Введите ваше имя:</label>
+        <input type="text" id="username" placeholder="Ваше имя" />
+        <button class="btn" onclick="authenticate()">Войти</button>
+    </div>
+
+    <script>
+        function authenticate() {
+            const username = document.getElementById('username').value.trim();
+            if (username) {
+                localStorage.setItem('username', username);
+                window.location.href = 'index.html';
+            } else {
+                alert('Пожалуйста, введите ваше имя!');
+            }
+        }
+    </script>
+</body>
+</html>

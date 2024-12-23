@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Выбор Дня</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <h1>Что мы будем делать сегодня?</h1>
+    <div class="container">
+        <a href="stay_home.html" class="option">
+            <img src="home.jpg" alt="Дома" />
+            <span>Остаемся дома</span>
+        </a>
+        <a href="go_out.html" class="option">
+            <img src="out.jpg" alt="Гулять" />
+            <span>Идем гулять</span>
+        </a>
+        <a href="food.html" class="option">
+            <img src="food.jpg" alt="Гулять" />
+            <span>Что будем кушать?</span>
+        </a>
+        <a href="other.html" class="option">
+            <img src="other.jpg" alt="Другое" />
+            <span>Другое</span>
+        </a>
+    </div>
+
+    <button class="btn" onclick="viewResults()">Посмотреть ответы</button>
+
+    <script src="js/results.js"></script>
+</body>
+</html>

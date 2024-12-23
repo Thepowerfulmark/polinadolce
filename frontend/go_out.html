@@ -1,0 +1,46 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Идем гулять</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <h1>Куда ты хочешь пойти, моллюск?</h1>
+    <div class="container">
+        <div class="option" onclick="toggleSelection(this, 'Гулять в парке')">
+            <img src="park.jpg" alt="Парк" />
+            <span>Гулять в парке</span>
+        </div>
+        <div class="option" onclick="toggleSelection(this, 'Ресторанчик')">
+            <img src="restaruant.jpg" alt="Ресторанчик" />
+            <span>Ресторанчик</span>
+        </div>
+        <div class="option" onclick="toggleSelection(this, 'Каток')">
+            <img src="katok.jpg" alt="Каток" />
+            <span>Каток</span>
+        </div>
+        <div class="option" onclick="toggleSelection(this, 'Бассейн')">
+            <img src="pool.jpg" alt="Бассейн" />
+            <span>Бассейн</span>
+        </div>
+        <div class="option" onclick="toggleSelection(this, 'Гулять по городу')">
+            <img src="walk.jpg" alt="Гулять по городу" />
+            <span>Гулять по городу</span>
+        </div>
+        <div class="option" onclick="toggleSelection(this, 'В торговый центр (для шоппинга)')">
+            <img src="mall.jpg" alt="В торговый центр (для шоппинга)" />
+            <span>В торговый центр (для шоппинга)</span>
+        </div>
+        <div class="input-option">
+            <textarea id="customGoOut" placeholder="Ваши предложения..."></textarea>
+            <button class="btn" onclick="addCustomResult('customGoOut')">Добавить</button>
+        </div>
+        <button class="btn save-btn" onclick="savePageResults()">Сохранить выбор</button>
+        <a href="index.html" class="btn">Вернуться назад</a>
+    </div>
+    <script src="js/results.js"></script>
+</body>
+</html>
