@@ -1,27 +1,85 @@
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Результаты</title>
-    <link rel="stylesheet" href="css/styles.css">
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Результаты</title>
+<link href="css/styles.css" rel="stylesheet"/>
+<div id="greeting" class="greeting-text"></div>
+<script>
+    // пользователь
+    document.addEventListener('DOMContentLoaded', () => {
+        const username = localStorage.getItem('username');
+        if (username) {
+            const greetingElement = document.getElementById('greeting');
+            greetingElement.textContent = `Привет  ${username}!!!!`;
+        }
+    });
+</script>
 </head>
 <body>
-    <h1>Результаты выбора</h1>
-    <div class="results-container">
-        <table class="results-table">
-            <thead>
-                <tr>
-                    <th>Вопрос</th>
-                    <th>Ответ</th>
-                </tr>
-            </thead>
-            <tbody id="resultsBody">
-                <!-- Данные будут добавлены через JavaScript -->
-            </tbody>
-        </table>
-    </div>
-    <a href="index.html" class="btn">Вернуться на главную</a>
-    <script src="js/results.js"></script>
+<h1>Результаты выбора</h1>
+<div class="results-container">
+<table class="results-table">
+<thead>
+<tr>
+<th>Вопрос</th>
+<th>Ответ</th>
+</tr>
+</thead>
+<tbody id="resultsBody">
+<!-- Данные будут добавлены через JavaScript -->
+</tbody>
+</table>
+</div>
+<a class="btn" href="index.html">Вернуться на главную</a>
+<script src="js/results.js"></script>
+<div class="media-container">
+
+        <div class="video-item">
+            <video autoplay loop muted playsinline>
+                <source src="video/yosjik_eat.webm" type="video/webm">
+                Ваш браузер не поддерживает видео.
+            </video>
+        </div>
+        
+        <div class="video-item">
+            <video autoplay loop muted playsinline>
+                <source src="video/Bold_eat_chips.webm" type="video/webm">
+                Ваш браузер не поддерживает видео.
+            </video>
+        </div>
+        
+        <div class="video-item">
+            <video autoplay loop muted playsinline>
+                <source src="video/Cat_brain_pain.webm" type="video/webm">
+                Ваш браузер не поддерживает видео.
+            </video>
+        </div>
+        
+        <div class="video-item">
+            <video autoplay loop muted playsinline>
+                <source src="video/cat_cry.webm" type="video/webm">
+                Ваш браузер не поддерживает видео.
+            </video>
+        </div>
+        
+        <div class="image-item circle">
+            <img src="images/1.webp" alt="Изображение 1" />
+        </div>
+        
+        <div class="image-item rounded">
+            <img src="images/2.webp" alt="Изображение 2" />
+        </div>
+        
+        <div class="image-item circle">
+            <img src="images/3.webp" alt="Изображение 3" />
+        </div>
+        
+        <div class="image-item rounded">
+            <img src="images/4.webp" alt="Изображение 4" />
+        </div>
+        </div>
 </body>
 </html>

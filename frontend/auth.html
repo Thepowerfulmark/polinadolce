@@ -1,20 +1,28 @@
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Авторизация</title>
-    <link rel="stylesheet" href="css/styles.css">
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Авторизация</title>
+<link href="css/styles.css" rel="stylesheet"/>
 </head>
 <body>
-    <h1>Авторизация</h1>
-    <div class="auth-container">
-        <label for="username">Введите ваше имя:</label>
-        <input type="text" id="username" placeholder="Ваше имя" />
-        <button class="btn" onclick="authenticate()">Войти</button>
-    </div>
+<h1>Авторизация</h1>
+<div class="auth-container">
+<label for="username">Введите ваше имя:</label>
+<input id="username" placeholder="Ваше имя" type="text"/>
+<button class="btn" onclick="authenticate()">Войти</button>
 
-    <script>
+<div class="video-container">
+    <video autoplay loop muted playsinline class="responsive-video">
+        <source src="video/1.webm" type="video/webm">
+        Анлаки! Что-то пошло нет так!.
+    </video>
+</div>
+</div>
+</div>
+<script>
         function authenticate() {
             const username = document.getElementById('username').value.trim();
             if (username) {

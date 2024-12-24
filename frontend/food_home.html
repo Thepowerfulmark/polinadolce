@@ -1,61 +1,118 @@
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Доставка</title>
-    <link rel="stylesheet" href="css/styles.css">
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Доставка</title>
+<link href="css/styles.css" rel="stylesheet"/>
 </head>
 <body>
-    <h1>Выберите кухню для доставки:</h1>
-    <div class="container">
-        <div class="option" onclick="toggleSelection(this, 'Грибы')">
-            <span>Грибы</span>
-        </div>
-        <div class="option" onclick="toggleSelection(this, 'Паста')">
-            <span>Паста</span>
-        </div>
-        <div class="option" onclick="toggleSelection(this, 'Суп')">
-            <span>Суп</span>
-        </div>
-        <div class="option" onclick="toggleSelection(this, 'Салат')">
-            <span>Салат</span>
-        </div>
-        <div class="option" onclick="toggleSelection(this, 'Гречка E-ball')">
-            <span>Гречка E-ball</span>
-        </div>
-        <div class="option" onclick="toggleSelection(this, 'Рис E-ball')">
-            <span>Рис E-ball</span>
-        </div>
-        <div class="option" onclick="toggleSelection(this, 'Пловик')">
-            <span>Пловик</span>
-        </div>
-        <div class="option" onclick="toggleSelection(this, 'Креветки')">
-            <span>Креветкие</span>
-        </div>
-        <div class="option" onclick="toggleSelection(this, 'Картошечка в духовке')">
-            <span>Картошечка в духовке</span>
-        </div>
-        <div class="option" onclick="toggleSelection(this, 'Пюре')">
-            <span>Пюре</span>
-        </div>
-        <div class="option" onclick="toggleSelection(this, 'Свинина')">
-            <span>Свинина</span>
-        </div>
-        <div class="option" onclick="toggleSelection(this, 'Курочка жаренная')">
-            <span>Курочка жаренная</span>
-        </div>
-        <div class="option" onclick="toggleSelection(this, 'Курочка запеченная')">
-            <span>Курочка запеченная</span>
+<h1>Выберите кухню для доставки:</h1>
+<div id="greeting" class="greeting-text"></div>
+<script>
+    // пользователь
+    document.addEventListener('DOMContentLoaded', () => {
+        const username = localStorage.getItem('username');
+        if (username) {
+            const greetingElement = document.getElementById('greeting');
+            greetingElement.textContent = `Привет  ${username}!!!!`;
+        }
+    });
+</script>
+<div class="container">
+<div class="option" onclick="toggleSelection(this, 'Грибы')">
+<span>Грибы</span>
+</div>
+<div class="option" onclick="toggleSelection(this, 'Паста')">
+<span>Паста</span>
+</div>
+<div class="option" onclick="toggleSelection(this, 'Суп')">
+<span>Суп</span>
+</div>
+<div class="option" onclick="toggleSelection(this, 'Салат')">
+<span>Салат</span>
+</div>
+<div class="option" onclick="toggleSelection(this, 'Гречка E-ball')">
+<span>Гречка E-ball</span>
+</div>
+<div class="option" onclick="toggleSelection(this, 'Рис E-ball')">
+<span>Рис E-ball</span>
+</div>
+<div class="option" onclick="toggleSelection(this, 'Пловик')">
+<span>Пловик</span>
+</div>
+<div class="option" onclick="toggleSelection(this, 'Креветки')">
+<span>Креветкие</span>
+</div>
+<div class="option" onclick="toggleSelection(this, 'Картошечка в духовке')">
+<span>Картошечка в духовке</span>
+</div>
+<div class="option" onclick="toggleSelection(this, 'Пюре')">
+<span>Пюре</span>
+</div>
+<div class="option" onclick="toggleSelection(this, 'Свинина')">
+<span>Свинина</span>
+</div>
+<div class="option" onclick="toggleSelection(this, 'Курочка жаренная')">
+<span>Курочка жаренная</span>
+</div>
+<div class="option" onclick="toggleSelection(this, 'Курочка запеченная')">
+<span>Курочка запеченная</span>
+</div>
+<div class="input-option">
+<textarea id="customDelivery" placeholder="Напишите, если чего-то нет..."></textarea>
+<button class="btn" onclick="addCustomResult('customDelivery')">Добавить</button>
+</div>
+<button class="btn save-btn" onclick="savePageResults()">Сохранить выбор</button>
+<a class="btn" href="food.html">Вернуться назад</a>
+</div>
+<script src="js/results.js"></script>
+<div class="media-container">
+
+        <div class="video-item">
+            <video autoplay loop muted playsinline>
+                <source src="video/yosjik_eat.webm" type="video/webm">
+                Ваш браузер не поддерживает видео.
+            </video>
         </div>
         
-        <div class="input-option">
-            <textarea id="customDelivery" placeholder="Напишите, если чего-то нет..."></textarea>
-            <button class="btn" onclick="addCustomResult('customDelivery')">Добавить</button>
+        <div class="video-item">
+            <video autoplay loop muted playsinline>
+                <source src="video/Bold_eat_chips.webm" type="video/webm">
+                Ваш браузер не поддерживает видео.
+            </video>
         </div>
-        <button class="btn save-btn" onclick="savePageResults()">Сохранить выбор</button>
-        <a href="food.html" class="btn">Вернуться назад</a>
-    </div>
-    <script src="js/results.js"></script>
+        
+        <div class="video-item">
+            <video autoplay loop muted playsinline>
+                <source src="video/Cat_brain_pain.webm" type="video/webm">
+                Ваш браузер не поддерживает видео.
+            </video>
+        </div>
+        
+        <div class="video-item">
+            <video autoplay loop muted playsinline>
+                <source src="video/cat_cry.webm" type="video/webm">
+                Ваш браузер не поддерживает видео.
+            </video>
+        </div>
+        
+        <div class="image-item circle">
+            <img src="images/1.webp" alt="Изображение 1" />
+        </div>
+        
+        <div class="image-item rounded">
+            <img src="images/2.webp" alt="Изображение 2" />
+        </div>
+        
+        <div class="image-item circle">
+            <img src="images/3.webp" alt="Изображение 3" />
+        </div>
+        
+        <div class="image-item rounded">
+            <img src="images/4.webp" alt="Изображение 4" />
+        </div>
+        </div>
 </body>
 </html>

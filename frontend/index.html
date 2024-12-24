@@ -1,34 +1,89 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Выбор Дня</title>
-    <link rel="stylesheet" href="css/styles.css">
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Выбор Дня</title>
+<link href="css/styles.css" rel="stylesheet"/>
 </head>
 <body>
-    <h1>Что мы будем делать сегодня?</h1>
-    <div class="container">
-        <a href="stay_home.html" class="option">
-            <img src="home.jpg" alt="Дома" />
-            <span>Остаемся дома</span>
-        </a>
-        <a href="go_out.html" class="option">
-            <img src="out.jpg" alt="Гулять" />
-            <span>Идем гулять</span>
-        </a>
-        <a href="food.html" class="option">
-            <img src="food.jpg" alt="Гулять" />
-            <span>Что будем кушать?</span>
-        </a>
-        <a href="other.html" class="option">
-            <img src="other.jpg" alt="Другое" />
-            <span>Другое</span>
-        </a>
-    </div>
+<h1>Что мы будем делать сегодня?</h1>
+<div id="greeting" class="greeting-text"></div>
+<script>
+    // пользователь
+    document.addEventListener('DOMContentLoaded', () => {
+        const username = localStorage.getItem('username');
+        if (username) {
+            const greetingElement = document.getElementById('greeting');
+            greetingElement.textContent = `Привет  ${username}!!!!`;
+        }
+    });
+</script>
+<div class="container">
+<a class="option" href="stay_home.html">
+<img alt="Дома" src="home.jpg"/>
+<span>Остаемся дома</span>
+</a>
+<a class="option" href="go_out.html">
+<img alt="Гулять" src="out.jpg"/>
+<span>Идем гулять</span>
+</a>
+<a class="option" href="food.html">
+<img alt="Гулять" src="food.jpg"/>
+<span>Что будем кушать?</span>
+</a>
+<a class="option" href="other.html">
+<img alt="Другое" src="other.jpg"/>
+<span>Другое</span>
+</a>
+</div>
+<button class="btn" onclick="viewResults()">Посмотреть ответы</button>
+<script src="js/results.js"></script>
+<div class="media-container">
 
-    <button class="btn" onclick="viewResults()">Посмотреть ответы</button>
-
-    <script src="js/results.js"></script>
+        <div class="video-item">
+            <video autoplay loop muted playsinline>
+                <source src="video/yosjik_eat.webm" type="video/webm">
+                Ваш браузер не поддерживает видео.
+            </video>
+        </div>
+        
+        <div class="video-item">
+            <video autoplay loop muted playsinline>
+                <source src="video/Bold_eat_chips.webm" type="video/webm">
+                Ваш браузер не поддерживает видео.
+            </video>
+        </div>
+        
+        <div class="video-item">
+            <video autoplay loop muted playsinline>
+                <source src="video/Cat_brain_pain.webm" type="video/webm">
+                Ваш браузер не поддерживает видео.
+            </video>
+        </div>
+        
+        <div class="video-item">
+            <video autoplay loop muted playsinline>
+                <source src="video/cat_cry.webm" type="video/webm">
+                Ваш браузер не поддерживает видео.
+            </video>
+        </div>
+        
+        <div class="image-item circle">
+            <img src="images/1.webp" alt="Изображение 1" />
+        </div>
+        
+        <div class="image-item rounded">
+            <img src="images/2.webp" alt="Изображение 2" />
+        </div>
+        
+        <div class="image-item circle">
+            <img src="images/3.webp" alt="Изображение 3" />
+        </div>
+        
+        <div class="image-item rounded">
+            <img src="images/4.webp" alt="Изображение 4" />
+        </div>
+        </div>
 </body>
 </html>

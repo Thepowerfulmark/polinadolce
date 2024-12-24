@@ -1,34 +1,90 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Остаемся дома</title>
-    <link rel="stylesheet" href="css/styles.css">
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Остаемся дома</title>
+<link href="css/styles.css" rel="stylesheet"/>
 </head>
 <body>
-    <h1>Что вы хотите делать дома?</h1>
-    <div class="container">
-        <div class="option" onclick="toggleSelection(this, 'Смотреть фильмы')">
-            <img src="movies.jpg" alt="Фильмы" />
-            <span>Смотреть фильмы</span>
+<h1>Что вы хотите делать дома?</h1>
+<div id="greeting" class="greeting-text"></div>
+<script>
+    // пользователь
+    document.addEventListener('DOMContentLoaded', () => {
+        const username = localStorage.getItem('username');
+        if (username) {
+            const greetingElement = document.getElementById('greeting');
+            greetingElement.textContent = `Привет  ${username}!!!!`;
+        }
+    });
+</script>
+<div class="container">
+<div class="option" onclick="toggleSelection(this, 'Смотреть фильмы')">
+<img alt="Фильмы" src="movies.jpg"/>
+<span>Смотреть фильмы</span>
+</div>
+<div class="option" onclick="toggleSelection(this, 'Играть в игры')">
+<img alt="Игры" src="games.jpg"/>
+<span>Играть в игры</span>
+</div>
+<div class="option" onclick="toggleSelection(this, 'Готовить вместе')">
+<img alt="Готовка" src="cook.jpg"/>
+<span>Готовить вместе</span>
+</div>
+<div class="input-option">
+<textarea id="customStayHome" placeholder="Ваши предложения..."></textarea>
+<button class="btn" onclick="addCustomResult('customStayHome')">Добавить</button>
+</div>
+<button class="btn save-btn" onclick="savePageResults()">Сохранить выбор</button>
+<a class="btn" href="index.html">Вернуться назад</a>
+</div>
+<script src="js/results.js"></script>
+<div class="media-container">
+
+        <div class="video-item">
+            <video autoplay loop muted playsinline>
+                <source src="video/yosjik_eat.webm" type="video/webm">
+                Ваш браузер не поддерживает видео.
+            </video>
         </div>
-        <div class="option" onclick="toggleSelection(this, 'Играть в игры')">
-            <img src="games.jpg" alt="Игры" />
-            <span>Играть в игры</span>
+        
+        <div class="video-item">
+            <video autoplay loop muted playsinline>
+                <source src="video/Bold_eat_chips.webm" type="video/webm">
+                Ваш браузер не поддерживает видео.
+            </video>
         </div>
-        <div class="option" onclick="toggleSelection(this, 'Готовить вместе')">
-            <img src="cook.jpg" alt="Готовка" />
-            <span>Готовить вместе</span>
+        
+        <div class="video-item">
+            <video autoplay loop muted playsinline>
+                <source src="video/Cat_brain_pain.webm" type="video/webm">
+                Ваш браузер не поддерживает видео.
+            </video>
         </div>
-        <div class="input-option">
-            <textarea id="customStayHome" placeholder="Ваши предложения..."></textarea>
-            <button class="btn" onclick="addCustomResult('customStayHome')">Добавить</button>
+        
+        <div class="video-item">
+            <video autoplay loop muted playsinline>
+                <source src="video/cat_cry.webm" type="video/webm">
+                Ваш браузер не поддерживает видео.
+            </video>
         </div>
-        <button class="btn save-btn" onclick="savePageResults()">Сохранить выбор</button>
-        <a href="index.html" class="btn">Вернуться назад</a>
-    </div>
-    <script src="js/results.js"></script>
+        
+        <div class="image-item circle">
+            <img src="images/1.webp" alt="Изображение 1" />
+        </div>
+        
+        <div class="image-item rounded">
+            <img src="images/2.webp" alt="Изображение 2" />
+        </div>
+        
+        <div class="image-item circle">
+            <img src="images/3.webp" alt="Изображение 3" />
+        </div>
+        
+        <div class="image-item rounded">
+            <img src="images/4.webp" alt="Изображение 4" />
+        </div>
+        </div>
 </body>
 </html>
