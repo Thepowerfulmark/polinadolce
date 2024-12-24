@@ -2,7 +2,7 @@ const express = require('express');
 const path = require('path');
 
 const app = express();
-const port = 3000;
+const port = process.env.PORT || 3000;
 
 // Путь к папке frontend, которая находится на уровне выше
 const frontendPath = path.join(__dirname, '..', 'frontend');
