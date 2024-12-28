@@ -1,21 +1,27 @@
 const express = require('express');
+const fs = require('fs');
 const path = require('path');
 
 const app = express();
-const port = process.env.PORT || 3000;
+const mediaFolder = path.join(__dirname, '../frontend/media');
 
-// Путь к папке frontend, которая находится на уровне выше
-const frontendPath = path.join(__dirname, '..', 'frontend');
 
-// Устанавливаем папку для статических файлов
-app.use(express.static(frontendPath));
-
-// Перенаправляем на auth.html
-app.get('/', (req, res) => {
-  res.sendFile(path.join(frontendPath, 'auth.html'));
+app.get('/list-media-files', (req, res) => {
+    fs.readdir(mediaFolder, (err, files) => {
+        if (err) {
+            console.error('Ошибка чтения директории:', err);
+            res.status(500).json({ error: 'Ошибка сервера' });
+        } else {
+            const mediaFiles = files.filter(file => /\.(jpg|jpeg|png|gif|mp4|webm|webp)$/i.test(file));
+            res.json(mediaFiles);
+        }
+    });
 });
 
-// Запускаем сервер
-app.listen(port, () => {
-  console.log(`Server is running on http://localhost:${port}`);
+
+app.use(express.static(path.join(__dirname, '../frontend')));
+app.use('/media', express.static(mediaFolder));
+const PORT = 3000;
+app.listen(PORT, () => {
+    console.log(`Сервер запущен на http://localhost:${PORT}`);
 });
