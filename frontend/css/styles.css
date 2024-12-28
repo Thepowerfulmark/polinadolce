@@ -241,8 +241,8 @@ a {
     justify-content: center;
     background-color: #f0f0f0;
     pointer-events: auto; 
-    transition: opacity 10s ease, transform 100s ease; /*не работает*/
-    z-index: 1; 
+    transition: opacity 5s ease, transform 5s ease; /*не работает*/
+    z-index: 0; 
 }
 .media-item:hover {
     opacity: 0.5; 
