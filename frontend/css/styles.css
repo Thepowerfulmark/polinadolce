@@ -231,6 +231,8 @@ a {
 }
 
 .media-item {
+    pointer-events: auto; /* Для интерактивности */
+    touch-action: none;   /* Предотвращение стандартных действий браузера на touch */
     position: absolute;
     width: 100px;
     height: 100px;
@@ -251,6 +253,7 @@ a {
 }
 .media-item.moving {
     transform: translate(var(--random-x), var(--random-y)); 
+
 }
 .media-item img,
 .media-item video {
