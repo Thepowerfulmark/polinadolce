@@ -1,6 +1,7 @@
-let results = {}; // Хранение текущих результатов пользователя
+// Revised results.js with admin functionality and persistent user authentication
+let results = {}; // Store current user's results
+let allResults = {}; // Store all users' results (visible to admin)
 
-// Загружаем результаты при открытии страницы
 function loadResults() {
     const username = localStorage.getItem('username');
     if (!username) {
@@ -8,54 +9,81 @@ function loadResults() {
         window.location.href = 'auth.html';
         return;
     }
+    const storedResults = localStorage.getItem('allResults');
+    allResults = storedResults ? JSON.parse(storedResults) : {};
 
-    // Запрос к серверу для получения результатов
-    fetch(`/load-results/${username}`)
-        .then(response => response.json())
-        .then(data => {
-            results = data; // Сохраняем полученные данные
-            displayResults(); // Функция для отображения результатов
-        })
-        .catch(error => {
-            console.error('Ошибка при загрузке результатов', error);
-            alert('Ошибка загрузки результатов');
-        });
+    results = allResults[username] || {};
 }
 
-// Сохранение результатов на сервере
 function saveResults() {
     const username = localStorage.getItem('username');
     if (username) {
-        // Отправка результатов на сервер
-        fetch('/save-results', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-                username: username,
-                results: results // Пример результатов, которые вы хотите сохранить
-            })
-        }).then(response => response.json())
-          .then(data => console.log('Результаты успешно сохранены', data))
-          .catch(error => console.error('Ошибка при сохранении результатов', error));
+        allResults[username] = results;
+        localStorage.setItem('allResults', JSON.stringify(allResults));
     }
 }
 
-// Отображение результатов на странице
+function toggleSelection(element, choice) {
+    element.classList.toggle('selected');
+    const question = document.querySelector('h1').textContent.trim();
+
+    if (!results[question]) {
+        results[question] = [];
+    }
+
+    if (results[question].includes(choice)) {
+        results[question] = results[question].filter(answer => answer !== choice);
+    } else {
+        results[question].push(choice);
+    }
+
+    saveResults();
+}
+
+function addCustomResult(inputId) {
+    const customInput = document.getElementById(inputId);
+    const customValue = customInput.value.trim();
+    const question = document.querySelector('h1').textContent.trim();
+
+    if (customValue) {
+        if (!results[question]) {
+            results[question] = [];
+        }
+
+        if (!results[question].includes(customValue)) {
+            results[question].push(customValue);
+        }
+
+        customInput.value = '';
+        saveResults();
+        alert('Ваш ответ добавлен!');
+    }
+}
+
+function savePageResults() {
+    saveResults();
+    alert('Ваш выбор сохранен!');
+}
+
+function viewResults() {
+    saveResults();
+    window.location.href = 'results.html';
+}
+
 function displayResults() {
     const username = localStorage.getItem('username');
     const isAdmin = username === 'admin';
+
     const resultsBody = document.getElementById('resultsBody');
 
     if (isAdmin) {
-        if (!results || Object.keys(results).length === 0) {
+        if (!allResults || Object.keys(allResults).length === 0) {
             resultsBody.innerHTML = '<tr><td colspan="2">Нет сохраненных результатов</td></tr>';
             return;
         }
 
         resultsBody.innerHTML = '';
-        for (const [user, userResults] of Object.entries(results)) {
+        for (const [user, userResults] of Object.entries(allResults)) {
             for (const [question, answers] of Object.entries(userResults)) {
                 const row = document.createElement('tr');
                 const userCell = document.createElement('td');
@@ -93,3 +121,20 @@ function displayResults() {
         }
     }
 }
+
+function checkAuthorization() {
+    const username = localStorage.getItem('username');
+    if (!username) {
+        alert('Вы не авторизованы! Пожалуйста, войдите на сайт.');
+        window.location.href = 'auth.html';
+    }
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+    checkAuthorization();
+    loadResults();
+
+    if (document.body.contains(document.getElementById('resultsBody'))) {
+        displayResults();
+    }
+});

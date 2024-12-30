@@ -1,6 +1,7 @@
 const mediaFolder = '/media'; 
 const mediaContainer = document.getElementById('media-container'); 
 
+
 function getRandomItems(array, count) {
     const shuffled = [...array].sort(() => 0.5 - Math.random()); 
     return shuffled.slice(0, count);
@@ -8,8 +9,8 @@ function getRandomItems(array, count) {
 
 function getRandomPosition(container) {
     const containerRect = container.getBoundingClientRect();
-    const x = Math.random() * containerRect.width;
-    const y = Math.random() * containerRect.height;
+    const x = Math.random() * (containerRect.width * 1); 
+    const y = Math.random() * (containerRect.height * 1); 
     return {
         x: x + containerRect.width * 0.1, 
         y: y + containerRect.height * 0.1 
@@ -44,28 +45,26 @@ function createMediaElement(fileName) {
     return mediaElement;
 }
 
+
 function randomizePositionOnHover(mediaElement) {
     const position = getRandomPosition(mediaContainer); 
     mediaElement.style.left = `${position.x}px`;
     mediaElement.style.top = `${position.y}px`;
     mediaElement.classList.add('moving');
-
+    
+   
     setTimeout(() => {
         mediaElement.classList.remove('moving');
-    }, 1000); // Разумная задержка 1 секунда
-}
-
-function handleTouch(event) {
-    event.preventDefault(); // Запрет стандартного поведения
-    const mediaElement = event.currentTarget;
-    randomizePositionOnHover(mediaElement);
+    }, 100000000000);  //милисеконд не работает
 }
 
 document.addEventListener('DOMContentLoaded', async () => {
     try {
+     
         const response = await fetch('/list-media-files');
         const files = await response.json();
 
+    
         const centerContainer = document.getElementById('media-container');
         if (centerContainer) {
             const randomFilesCenter = getRandomItems(files, 7); 
@@ -74,12 +73,10 @@ document.addEventListener('DOMContentLoaded', async () => {
                 const mediaElement = createMediaElement(file);
                 centerContainer.appendChild(mediaElement);
 
+           
                 mediaElement.addEventListener('mouseenter', () => {
                     randomizePositionOnHover(mediaElement);
                 });
-
-                // Добавляем обработчики для мобильных устройств
-                mediaElement.addEventListener('touchstart', handleTouch);
             });
         } else {
             console.error('Центральный контейнер с id "media-container" не найден.');
@@ -131,9 +128,6 @@ document.addEventListener('DOMContentLoaded', async () => {
                 item.style.opacity = '1'; 
                 item.style.pointerEvents = 'auto'; 
             });
-
-            // Добавляем обработчики для мобильных устройств
-            item.addEventListener('touchstart', handleTouch);
         });
     } catch (error) {
         console.error('Ошибка загрузки медиафайлов:', error);
